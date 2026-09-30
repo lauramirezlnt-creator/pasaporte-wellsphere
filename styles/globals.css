@@ -1,0 +1,512 @@
+/* =========================================================
+   WellSphere LATAM — Design Tokens
+   Paleta: degradado naranja → rosa → morado (marca distintiva)
+   Estética: pasaporte de viaje (cubierta, sellos tipo tinta, textura)
+   Tipografía: Poppins (títulos) + Inter (texto), vía next/font en layout.tsx
+   ========================================================= */
+
+:root {
+  /* --- Colores de marca --- */
+  --wsp-orange: #ff7a00;
+  --wsp-pink: #ff3d8a;
+  --wsp-purple: #b14eff;
+  --wsp-violet: #6e3af0;
+
+  --wsp-gradient-brand: linear-gradient(
+    135deg,
+    var(--wsp-orange) 0%,
+    var(--wsp-pink) 45%,
+    var(--wsp-purple) 75%,
+    var(--wsp-violet) 100%
+  );
+
+  /* Degradados por sello (uno distinto por destino, dentro de la misma familia) */
+  --wsp-gradient-thoughts: linear-gradient(135deg, #ff7a00, #ff3d8a);
+  --wsp-gradient-emotions: linear-gradient(135deg, #ff3d8a, #b14eff);
+  --wsp-gradient-body: linear-gradient(135deg, #b14eff, #6e3af0);
+  --wsp-gradient-connections: linear-gradient(135deg, #ff7a00, #b14eff);
+  --wsp-gradient-values: linear-gradient(135deg, #ff3d8a, #6e3af0);
+
+  /* --- Superficie tipo "papel de pasaporte" --- */
+  --wsp-paper: #fbf7f0;
+  --wsp-paper-dark: #efe7da;
+  --wsp-ink: #241c33;
+  --wsp-ink-soft: #4a3f5c;
+  --wsp-muted: #8b7f9c;
+
+  --wsp-success: #1f9d63;
+  --wsp-danger: #d6335c;
+  --wsp-warning: #d98c1f;
+
+  /* --- Bordes / sombras --- */
+  --wsp-border: rgba(36, 28, 51, 0.12);
+  --wsp-shadow-soft: 0 8px 24px rgba(110, 58, 240, 0.14);
+  --wsp-shadow-card: 0 14px 32px rgba(36, 28, 51, 0.16);
+
+  /* --- Radios --- */
+  --wsp-radius-sm: 10px;
+  --wsp-radius-md: 18px;
+  --wsp-radius-lg: 28px;
+  --wsp-radius-pill: 999px;
+
+  /* --- Tipografía --- */
+  --font-display: var(--font-poppins), "Poppins", system-ui, sans-serif;
+  --font-body: var(--font-inter), "Inter", system-ui, sans-serif;
+
+  /* --- Layout mobile-first --- */
+  --wsp-max-width: 480px;
+  --wsp-gutter: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--wsp-ink);
+  background: var(--wsp-paper);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* =========================================================
+   Layout raíz mobile-first
+   ========================================================= */
+
+.wsp-app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wsp-screen {
+  width: 100%;
+  max-width: var(--wsp-max-width);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--wsp-gutter) 40px;
+}
+
+/* Textura sutil de "papel" superpuesta sobre fondos claros */
+.wsp-texture {
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(177, 78, 255, 0.06), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(255, 61, 138, 0.07), transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(255, 122, 0, 0.06), transparent 40%);
+}
+
+/* =========================================================
+   Cubierta / Hero con degradado de marca
+   ========================================================= */
+
+.wsp-cover {
+  position: relative;
+  width: 100%;
+  border-radius: 0 0 var(--wsp-radius-lg) var(--wsp-radius-lg);
+  background: var(--wsp-gradient-brand);
+  color: #fff;
+  padding: 48px var(--wsp-gutter) 40px;
+  overflow: hidden;
+  box-shadow: var(--wsp-shadow-soft);
+}
+
+.wsp-cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.16), transparent 35%),
+    radial-gradient(circle at 85% 75%, rgba(255, 255, 255, 0.12), transparent 40%);
+  pointer-events: none;
+}
+
+.wsp-cover-eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  font-weight: 600;
+}
+
+.wsp-cover-title {
+  font-size: 26px;
+  line-height: 1.2;
+  margin-top: 10px;
+}
+
+.wsp-cover-subtitle {
+  margin-top: 8px;
+  font-size: 14px;
+  opacity: 0.92;
+  max-width: 320px;
+}
+
+.wsp-logo-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+
+/* =========================================================
+   Tarjetas / superficies
+   ========================================================= */
+
+.wsp-card {
+  background: #fff;
+  border: 1px solid var(--wsp-border);
+  border-radius: var(--wsp-radius-md);
+  box-shadow: var(--wsp-shadow-card);
+  padding: 20px;
+}
+
+.wsp-card-flat {
+  background: #fff;
+  border: 1px solid var(--wsp-border);
+  border-radius: var(--wsp-radius-md);
+  padding: 20px;
+}
+
+/* =========================================================
+   Botones
+   ========================================================= */
+
+.wsp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 15px 20px;
+  border-radius: var(--wsp-radius-pill);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.wsp-btn:active {
+  transform: scale(0.98);
+}
+
+.wsp-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.wsp-btn-primary {
+  background: var(--wsp-gradient-brand);
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(177, 78, 255, 0.32);
+}
+
+.wsp-btn-ghost {
+  background: transparent;
+  color: var(--wsp-ink);
+  border: 1.5px solid var(--wsp-border);
+}
+
+.wsp-btn-outline-light {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+}
+
+/* =========================================================
+   Formularios
+   ========================================================= */
+
+.wsp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.wsp-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--wsp-ink-soft);
+}
+
+.wsp-input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: var(--wsp-radius-sm);
+  border: 1.5px solid var(--wsp-border);
+  font-size: 16px;
+  font-family: var(--font-body);
+  background: #fff;
+  color: var(--wsp-ink);
+}
+
+.wsp-input:focus {
+  outline: none;
+  border-color: var(--wsp-purple);
+  box-shadow: 0 0 0 3px rgba(177, 78, 255, 0.16);
+}
+
+.wsp-hint {
+  font-size: 12px;
+  color: var(--wsp-muted);
+}
+
+.wsp-error-text {
+  font-size: 13px;
+  color: var(--wsp-danger);
+  font-weight: 600;
+}
+
+.wsp-success-text {
+  font-size: 13px;
+  color: var(--wsp-success);
+  font-weight: 600;
+}
+
+/* =========================================================
+   Chips / badges de estado
+   ========================================================= */
+
+.wsp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--wsp-radius-pill);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.wsp-badge-sealed {
+  background: rgba(31, 157, 99, 0.14);
+  color: var(--wsp-success);
+}
+
+.wsp-badge-pending {
+  background: rgba(139, 127, 156, 0.14);
+  color: var(--wsp-muted);
+}
+
+/* =========================================================
+   Sello de pasaporte (estampa tipo tinta)
+   ========================================================= */
+
+.wsp-stamp-page {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: var(--wsp-radius-md);
+  border: 1px solid var(--wsp-border);
+  background: #fff;
+}
+
+.wsp-stamp-page.is-pending {
+  opacity: 0.6;
+  border-style: dashed;
+}
+
+.wsp-stamp-mark {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  position: relative;
+  border: 3px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 6px 16px rgba(36, 28, 51, 0.2);
+}
+
+.wsp-stamp-mark::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(255, 255, 255, 0.5);
+}
+
+.wsp-stamp-mark.is-pending {
+  background: var(--wsp-paper-dark);
+  color: var(--wsp-muted);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.wsp-stamp-mark.is-pending::after {
+  border-color: rgba(139, 127, 156, 0.35);
+}
+
+.wsp-stamp-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.wsp-stamp-order {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--wsp-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.wsp-stamp-label {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--wsp-ink);
+}
+
+.wsp-stamp-date {
+  font-size: 12.5px;
+  color: var(--wsp-ink-soft);
+}
+
+/* =========================================================
+   Progreso X/5
+   ========================================================= */
+
+.wsp-progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wsp-progress-track {
+  flex: 1;
+  height: 8px;
+  border-radius: var(--wsp-radius-pill);
+  background: var(--wsp-paper-dark);
+  overflow: hidden;
+}
+
+.wsp-progress-fill {
+  height: 100%;
+  border-radius: var(--wsp-radius-pill);
+  background: var(--wsp-gradient-brand);
+  transition: width 0.4s ease;
+}
+
+.wsp-progress-count {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   Estados de check-in (éxito / error / espera)
+   ========================================================= */
+
+.wsp-status-icon {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 34px;
+  color: #fff;
+}
+
+.wsp-status-icon.success {
+  background: linear-gradient(135deg, var(--wsp-success), #2fbb7c);
+}
+
+.wsp-status-icon.error {
+  background: linear-gradient(135deg, var(--wsp-danger), #f0537a);
+}
+
+.wsp-status-icon.info {
+  background: var(--wsp-gradient-brand);
+}
+
+.wsp-center-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  padding: 24px 8px;
+}
+
+/* =========================================================
+   Utilidades
+   ========================================================= */
+
+.wsp-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.wsp-mt-24 {
+  margin-top: 24px;
+}
+
+.wsp-mt-32 {
+  margin-top: 32px;
+}
+
+.wsp-text-center {
+  text-align: center;
+}
+
+.wsp-muted {
+  color: var(--wsp-muted);
+  font-size: 13px;
+}
+
+.wsp-divider {
+  height: 1px;
+  background: var(--wsp-border);
+  margin: 8px 0;
+}

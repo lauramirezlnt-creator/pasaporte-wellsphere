@@ -1,0 +1,31 @@
+{
+  "name": "pasaporte-wellsphere",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Pasaporte digital de bienestar - Next Stop: WellSphere Wellness (Next.js + Supabase, sin Microsoft 365).",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "qr": "node scripts/generarQR.mjs",
+    "qr:a4": "node scripts/generarA4.mjs"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.5.2",
+    "@supabase/supabase-js": "^2.45.4",
+    "next": "14.2.35",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "qrcode": "^1.5.4",
+    "typescript": "^5.5.3"
+  },
+  "engines": {
+    "node": ">=18.18.0"
+  }
+}
