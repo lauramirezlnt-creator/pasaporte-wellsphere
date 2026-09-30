@@ -273,3 +273,4 @@ COT)" y la nota "Solo correo @epam.com".
   Cualquier caso especial requeriría una operación manual directa en la
   base de datos (fuera del flujo normal de la app), decisión que debe
   tomar el equipo People caso por caso.
+  deploy
